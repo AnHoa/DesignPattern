@@ -13,10 +13,10 @@ namespace DelegateAndEvent
     {
         static void Main(string[] args)
         {
-            //Example e = new Example();
-            //Calculation c = e.Addition;
-            //e.OnAdded += E_OnAdded;
-            //c(3, 6);
+            Example e = new Example();
+            Calculation c = e.Addition;
+            e.OnAdded += E_OnAdded;
+            c(3, 6);
 
 
             Example d = new Example();
