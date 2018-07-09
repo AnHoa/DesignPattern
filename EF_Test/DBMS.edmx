@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDay" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Test.dbo.Emp_Education' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Emp_Education">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="SchoolName" />
+          </Key>
+          <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FromDate" Type="varchar" MaxLength="8" />
+          <Property Name="ToDate" Type="varchar" MaxLength="8" />
+          <Property Name="Total" Type="float" />
+        </EntityType>
+        <Function Name="SP_Get_EmpInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp_Education" EntityType="Self.Emp_Education" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Emp_Education].[EmpID] AS [EmpID], 
+    [Emp_Education].[SchoolName] AS [SchoolName], 
+    [Emp_Education].[FromDate] AS [FromDate], 
+    [Emp_Education].[ToDate] AS [ToDate], 
+    [Emp_Education].[Total] AS [Total]
+    FROM [dbo].[Emp_Education] AS [Emp_Education]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDay" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Emp_Education">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="SchoolName" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromDate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ToDate" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Emps" EntityType="Self.Emp" />
+          <EntitySet Name="Emp_Education" EntityType="Self.Emp_Education" />
+          <FunctionImport Name="SP_Get_EmpInfo" ReturnType="Collection(TestModel.SP_Get_EmpInfo_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_Get_EmpInfo_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="BirthDay" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities">
+          <EntitySetMapping Name="Emps">
+            <EntityTypeMapping TypeName="TestModel.Emp">
+              <MappingFragment StoreEntitySet="Emp">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emp_Education">
+            <EntityTypeMapping TypeName="TestModel.Emp_Education">
+              <MappingFragment StoreEntitySet="Emp_Education">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Get_EmpInfo" FunctionName="TestModel.Store.SP_Get_EmpInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestModel.SP_Get_EmpInfo_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
