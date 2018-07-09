@@ -18,6 +18,7 @@ namespace DelegateAndEvent
             //e.OnAdded += E_OnAdded;
             //c(3, 6);
 
+
             Example d = new Example();
             Calculation f = d.Substraction;
             f += delegate (int a, int b)
