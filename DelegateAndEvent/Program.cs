@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DelegateAndEvent
 {
@@ -30,10 +28,7 @@ namespace DelegateAndEvent
             d.Substraction(348, 5);
 
 
-            d.SubDelegate(delegate (string i)
-            {
-                Console.WriteLine(i);
-            }, "Deng");
+            d.SubDelegate(i => Console.WriteLine(i), "Deng");
 
 
             List<string> List = new List<string>();
@@ -42,6 +37,9 @@ namespace DelegateAndEvent
             List.Add("shyam");
             List.Add("Sachin");
             IEnumerable names = from n in List where (n.StartsWith("S")) select n;
+
+            IEnumerator it = names.GetEnumerator();
+            it.MoveNext();
 
             foreach (string name in names)
             {
@@ -53,7 +51,7 @@ namespace DelegateAndEvent
             Func<int, int, bool> delTaolao2 = new Func<int, int, bool>((x, y) => x > y ? true : false);
 
             Console.WriteLine(delTaolao(33) == true ? "Dung roi haha" : "Sai Cmnr Ahuhu");
-            Console.WriteLine(delTaolao2(33,35) == true ? "x lon haha" : "y lon hon haha");
+            Console.WriteLine(delTaolao2(33, 35) == true ? "x lon haha" : "y lon hon haha");
 
             //List<string> fruits = new List<string> { "apple", "passionfruit", "banana", "mango",
             //        "orange", "blueberry", "grape", "strawberry" };
@@ -71,7 +69,8 @@ namespace DelegateAndEvent
             //    Console.WriteLine(fruit);
             //}
 
-
+            int so = (char)+(byte)-(int)+(long)-1;
+            Console.WriteLine(so);
             //GEnericClass2<int> values = new GEnericClass2<int>();
             //values.Datas[13] = 23;
             //values.Datas[2] = 35;

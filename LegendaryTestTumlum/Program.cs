@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LegendaryTestTumlum.TinhKeThua_DaHinh;
+using System;
 
 namespace LegendaryTestTumlum
 {
@@ -113,6 +114,8 @@ namespace LegendaryTestTumlum
                 Console.WriteLine();
             }
         }
+        static int c = 45;
+        static string str1 = "NGuyen An";
         static void Main(string[] args)
         {
 
@@ -131,9 +134,14 @@ namespace LegendaryTestTumlum
             //Console.WriteLine(DaoNguocTen("  a  Nguyen Binh An s ") + "||||");
             //TamGiacCan(8);
 
-            
-            
+            ConcreteClass1 c1 = new ConcreteClass1();
+            ConcreteClass1 c2 = new ConcreteClass1();
+            ConcreteClass1 c3 = new ConcreteClass1();
+            Ab_Class1 c4 = new ConcreteClass1();
+            Console.WriteLine(c1.getNCon());
+            Console.WriteLine(c1.getNNumber());
 
+            User user = new User.Builder().setName("An").setId(1).build();
         }
 
     }

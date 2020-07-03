@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FDB1E4F6-482B-487A-A578-28503F0F8892}</ProjectGuid>
+    <ProjectGuid>{191F3B8C-74DF-42D6-A472-4B22AC5C2BC0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LegendaryTestTumlum</RootNamespace>
-    <AssemblyName>LegendaryTestTumlum</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Sync</RootNamespace>
+    <AssemblyName>Sync</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,22 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbClass.cs" />
-    <Compile Include="Animal.cs" />
-    <Compile Include="AnimalAction.cs" />
-    <Compile Include="ListProducts.cs" />
-    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tiger.cs" />
-    <Compile Include="TinhKeThua_DaHinh\Ab_Class1.cs" />
-    <Compile Include="TinhKeThua_DaHinh\Alex.cs" />
-    <Compile Include="TinhKeThua_DaHinh\ConcreteClass1.cs" />
-    <Compile Include="TinhKeThua_DaHinh\Human.cs" />
-    <Compile Include="TinhKeThua_DaHinh\Interface1.cs" />
-    <Compile Include="TinhKeThua_DaHinh\Interface2.cs" />
-    <Compile Include="TinhKeThua_DaHinh\User.cs" />
-    <Compile Include="TupleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
