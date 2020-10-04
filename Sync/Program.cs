@@ -34,9 +34,9 @@ namespace AQuay
         public static async Task<int> D1()
         {
             int res = 0;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
-                await Task.Delay(35);
+                Task.Delay(135);
                 res = res + i;
                 Console.WriteLine(" 1");
             }
@@ -47,9 +47,9 @@ namespace AQuay
         public static async Task<int> D2()
         {
             int res = 0;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
-                await Task.Delay(18);
+                await Task.Delay(120);
                 res = res + i;
                 Console.WriteLine("            22");
             }
