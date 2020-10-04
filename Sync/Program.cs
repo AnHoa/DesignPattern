@@ -23,11 +23,14 @@ namespace AQuay
         {
             //await Task.Delay(0);
             Task<int> task1 = D2();
+
+            //await Task.Delay(4000);
             Task<int> task2 = D1();
             //Task.WhenAll(task1, task2);
             Console.WriteLine("Omha");
-            //Console.WriteLine(task1.Result);
-            //Console.WriteLine(task2.Result);
+
+            Console.WriteLine(task1.Result);
+            Console.WriteLine(task2.Result);
         }
 
 
@@ -36,7 +39,7 @@ namespace AQuay
             int res = 0;
             for (int i = 0; i < 20; i++)
             {
-                Task.Delay(135);
+                await Task.Delay(135);
                 res = res + i;
                 Console.WriteLine(" 1");
             }
